@@ -1,0 +1,84 @@
+[project]
+name = "discord-tts-jp"
+version = "1.0.0"
+description = "discordの読み上げBOTに使用できるライブラリ(日本語only)"
+requires-python = ">=3.13"
+dependencies = [
+    "discord-py",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "black",
+    "python-dotenv",
+    "pytest",
+    "pytest-asyncio",
+    "isort",
+    "ruff",
+    "pre-commit",
+]
+
+[tool.uv.sources]
+discord-py = { git = "https://github.com/Rapptz/discord.py" }
+
+[tool.pyright]
+reportIncompatibleMethodOverride=false
+
+
+[tool.ruff]
+exclude = [
+    ".git",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    ".vscode",
+]
+include = ["pyproject.toml"]
+fix = true
+# Same as Black.
+line-length = 88
+indent-width = 4
+
+target-version = "py312"
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = ["E4", "E7", "E9", "F"]
+ignore = ["E722", "F403", "F405"]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F403"]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+skip-magic-trailing-comma = true
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+#
+# This is currently disabled by default, but it is planned for this
+# to be opt-out in the future.
+docstring-code-format = false
+
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+#
+# This only has an effect when the `docstring-code-format` setting is
+# enabled.
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
