@@ -1,7 +1,7 @@
 [project]
-name = "discord-tts-jp"
+name = "dvtwebapi.py"
 version = "1.0.0"
-description = "discordの読み上げBOTに使用できるライブラリ(日本語only)"
+description = "voicetext web apiをdiscord bot用に使いやすくしたラッパー"
 requires-python = ">=3.13"
 dependencies = [
     "discord-py",
@@ -18,6 +18,7 @@ dev-dependencies = [
     "isort",
     "ruff",
     "pre-commit",
+    "twine>=6.1.0",
 ]
 
 [tool.uv.sources]
@@ -84,3 +85,18 @@ docstring-code-line-length = "dynamic"
 
 [tool.ruff.lint.isort]
 required-imports = ["from __future__ import annotations"]
+
+
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+[tool.setuptools]
+package-dir = {"" = "tts"}
+
+[tool.setuptools.dynamic]
+version = {attr = "version.version"}
+
+[tool.setuptools_scm]
+write_to = "tts/version.py"
+version_scheme = "python-simplified-semver"
+local_scheme = "no-local-version"
