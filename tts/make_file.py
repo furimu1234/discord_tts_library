@@ -44,7 +44,7 @@ async def save_wave_file(
     if not fp_voice_file and channel_id and message_id:
         fp_voice_file = f"voices/{channel_id}/{message_id}.wav"
 
-    if not fp_voice_file or os.path.exists(fp_voice_file):
+    if not fp_voice_file:
         raise NotFoundPlayFileException(fp_voice_file)
 
     if not os.path.isdir("voices"):
@@ -55,3 +55,6 @@ async def save_wave_file(
 
     with open(fp_voice_file, "wb") as f:
         f.write(voice_byte)
+
+    if not os.path.exists(fp_voice_file):
+        raise NotFoundPlayFileException(fp_voice_file)
