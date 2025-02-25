@@ -1,1 +1,1 @@
-uv build
+uv build --wheel
